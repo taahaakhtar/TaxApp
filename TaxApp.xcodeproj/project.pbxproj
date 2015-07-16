@@ -481,6 +481,7 @@
 				7D4CC3A61B56961C009F9A13 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7D4CC3A71B56961C009F9A13 /* Build configuration list for PBXNativeTarget "TaxAppTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +490,7 @@
 				7D4CC3A91B56961C009F9A13 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7D4CC3AA1B56961C009F9A13 /* Build configuration list for PBXNativeTarget "TaxAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +499,7 @@
 				7D4CC3AC1B56961C009F9A13 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
