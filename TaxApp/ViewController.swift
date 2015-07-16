@@ -8,18 +8,86 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UITextFieldDelegate {
+    
+    // MARK: Properties
+    
+    @IBOutlet weak var initialValueField: UITextField!
+    @IBOutlet weak var salesTaxRateField: UITextField!
+    @IBOutlet weak var discountRateField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Handle the text field’s user input through delegate callbacks.
+        
+        initialValueField.delegate = self
+        salesTaxRateField.delegate = self
+        discountRateField.delegate = self
+        
+        //Looks for single or multiple taps. - part of hiding keyboard
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        view.addGestureRecognizer(tap)
+      
+    }
+    
+    // Calls this function when the tap is recognized. Hides keyboard!
+    func DismissKeyboard(){
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: UITextFieldDelegate 
+    
+    // Limit the number of digits entered into the UITextField
 
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
+        
+        
+        // Sets range of characters allowed in each field
+        
+        let newLengthInitialValue = (textField.text!.characters.count) + (string.characters.count) - range.length
+        
+        let newLengthSalesTax = (salesTaxRateField.text!.characters.count) + (string.characters.count) - range.length
+        
+        let newLengthDiscountRate = (discountRateField.text!.characters.count) + (string.characters.count) - range.length
+        
+        
+        // Limits decimal to one decimal point
+       let countdots = textField.text!.componentsSeparatedByString(".").count - 1
+        
+        if countdots > 0 && string == "."
+        {
+            return false
+        }
+        
+        // Returns true and returns maximum length allowed in text fields
+        return true && newLengthInitialValue <= 8 && newLengthSalesTax <= 5 && newLengthDiscountRate <= 5 // Bool
+        
+    }
+    
+        
+    // MARK: Actions 
+    
+    @IBAction func setInitialValue(sender: UITextField) {
+    
+        
+    }
+    
+    @IBAction func setSalesTax(sender: UITextField) {
+    }
+   
+    
+    @IBAction func setDiscountRate(sender: UITextField) {
+    }
+
+    
+    
 
 }
 
