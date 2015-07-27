@@ -34,20 +34,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Calls this function when the tap is recognized. Hides keyboard!
+    
     func DismissKeyboard(){
+        
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        
         view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
         // Dispose of any resources that can be recreated.
     }
     
     // MARK: UITextFieldDelegate 
     
     // Limit the number of digits entered into the UITextField
-
+    
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
         
         
@@ -60,6 +64,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let newLengthDiscountRate = (discountRateField.text!.characters.count) + (string.characters.count) - range.length
 
         // Limits decimal to one decimal point
+        
        let countDots = textField.text!.componentsSeparatedByString(".").count - 1
         
         if countDots > 0 && string == "."
@@ -68,6 +73,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Limits digits after decimal to two digits
+        
         if textField.text!.rangeOfString(".") != nil {
             if textField.text!.componentsSeparatedByString(".")[1].characters.count + string.characters.count > 2 {
                 return false
@@ -75,6 +81,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
 
         // Returns true and returns maximum length allowed in text fields
+        
         return true && newLengthInitialValue <= 10 && newLengthSalesTax <= 5 && newLengthDiscountRate <= 5 // Bool
         
     }
@@ -84,7 +91,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func setInitialValue(sender: UITextField) {
         
         
-        if initialValueField.text == "" {
+        if initialValueField.text == "" || initialValueField.text == nil {
             finalDisplayedLabel.text = "0.00"
         }
         else {
@@ -94,19 +101,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @IBAction func setSalesTax(sender: UITextField) {
+    @IBAction func setSalesTax(sender: UITextField){
         
         // Calculate the final value when user inputs a Sales Tax Rate
         
-        let initialValueConvert = Int(initialValueField.text!)!
-        let salesTaxRate: Int = (Int(salesTaxRateField.text!)! / 100) + 1
+        if finalDisplayedLabel.text == initialValueField.text || initialValueField.text == ""{
+            
+            // Initial value user inputs converted to a Double
+            
+            let initialValueDouble: Double? = Double(initialValueField.text!)
+            
+            // Sales Tax number user inputs converted to multiple
+            
+            let salesTaxDouble: Double? = Double(salesTaxRateField.text!)
+           
+            if let salesTax = salesTaxDouble{
+                
+                let newSalesTax = (salesTax / 100) + 1
+                print("Success! Your sales tax multiple is \(newSalesTax)")
+                
+                let finalValue = initialValueDouble! * newSalesTax
+                
+                finalDisplayedLabel.text = "\(finalValue)"
+            }
+            
+        } // End of original if
         
-        // Display final value of calculated Sales Tax Rate 
-        
-        var salesTaxFinal = String(initialValueConvert * salesTaxRate)
-        finalDisplayedLabel.text = salesTaxFinal
-        
-    }
+    } // End of setSalesTax function
    
 
     @IBAction func setDiscountRate(sender: UITextField) {
@@ -114,7 +135,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
 }
-    
+
+
+
+
+
+
 
 
 
