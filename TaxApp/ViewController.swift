@@ -75,7 +75,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
 
         // Returns true and returns maximum length allowed in text fields
-        return true && newLengthInitialValue <= 8 && newLengthSalesTax <= 5 && newLengthDiscountRate <= 5 // Bool
+        return true && newLengthInitialValue <= 10 && newLengthSalesTax <= 5 && newLengthDiscountRate <= 5 // Bool
         
     }
     
@@ -83,21 +83,28 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func setInitialValue(sender: UITextField) {
         
-//        var integerFinalDisplayed: Double? = Double(finalDisplayedLabel.text!)
-//        var integerInitialDisplayed: Double? = Double(initialValueField.text!)
-//    
-//        if integerInitialDisplayed == nil {
-//            integerFinalDisplayed = 0.00
-//        }
-//        
-//        else {
         
-        finalDisplayedLabel.text = initialValueField.text
+        if initialValueField.text == "" {
+            finalDisplayedLabel.text = "0.00"
+        }
+        else {
+            finalDisplayedLabel.text = initialValueField.text
+        }
         
         
     }
     
     @IBAction func setSalesTax(sender: UITextField) {
+        
+        // Calculate the final value when user inputs a Sales Tax Rate
+        
+        let initialValueConvert = Int(initialValueField.text!)!
+        let salesTaxRate: Int = (Int(salesTaxRateField.text!)! / 100) + 1
+        
+        // Display final value of calculated Sales Tax Rate 
+        
+        var salesTaxFinal = String(initialValueConvert * salesTaxRate)
+        finalDisplayedLabel.text = salesTaxFinal
         
     }
    
