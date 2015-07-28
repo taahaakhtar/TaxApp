@@ -103,7 +103,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func setSalesTax(sender: UITextField){
         
-        // Calculate the final value when user inputs a Sales Tax Rate
+        // Calculate the final value when user only inputs a Sales Tax Rate
         
         if finalDisplayedLabel.text == initialValueField.text || initialValueField.text == ""{
             
@@ -117,13 +117,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
            
             if let salesTax = salesTaxDouble{
                 
-                let newSalesTax = (salesTax / 100) + 1
-                print("Success! Your sales tax multiple is \(newSalesTax)")
+                let newSalesTax = (salesTax / 100) + 1 // Calculation to get the multiple
+                print("Success! Your sales tax multiple is \(newSalesTax)") // Shows the multiple being used
                 
-                let finalValue = initialValueDouble! * newSalesTax
+                let finalValue = initialValueDouble! * newSalesTax // What the final value calculation will be
                 
                 finalDisplayedLabel.text = "\(finalValue)"
-            }
+                
+            } // End of nested if
             
         } // End of original if
         
@@ -132,9 +133,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func setDiscountRate(sender: UITextField) {
         
-    }
+        // Calculate the final value when the user also inputs a Discount Rate 
+    
+            // Initial discount rate value user inputs converted to a Double
+        
+            let discountRateDouble: Double? = Double(discountRateField.text!)
+            
+            if let discountRate = discountRateDouble{
+                
+                let newDisRate: Double = 1 - (discountRate / 100)
+                print("Success! Your discount rate multiple is \(newDisRate)")
+                let preDiscountPrice = NSString(string: finalDisplayedLabel.text!).doubleValue
+                finalDisplayedLabel.text = "\(newDisRate * preDiscountPrice)"
+                
+            } // End of if
+        
+    } // End of setDiscountRate function
 
-}
+} // End of ViewController class
 
 
 
