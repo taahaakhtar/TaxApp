@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
@@ -16,6 +17,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var salesTaxRateField: UITextField!
     @IBOutlet weak var discountRateField: UITextField!
     @IBOutlet weak var finalDisplayedLabel: UILabel!
+    @IBOutlet weak var clearValues: UIButton!
     
     
     override func viewDidLoad() {
@@ -122,11 +124,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
                 let finalValue = initialValueDouble! * newSalesTax // What the final value calculation will be
                 
-                finalDisplayedLabel.text = "\(finalValue)"
+                print("Success! Your new final value should be \(finalValue)") // Tests to see what actual price is compared to the label value
+                
+                finalDisplayedLabel.text = "\(round((finalValue) * 100) / 100)" // round final value to 2 decimal places
                 
             } // End of nested if
             
         } // End of original if
+        
+        if salesTaxRateField.text == "" || salesTaxRateField.text == nil{ // if the sales tax field is empty
+            
+            finalDisplayedLabel.text = initialValueField.text
+        
+        } // If user decides to manually clear sales tax rate, the final value will only display the initial value.
         
     } // End of setSalesTax function
    
@@ -138,19 +148,42 @@ class ViewController: UIViewController, UITextFieldDelegate {
             // Initial discount rate value user inputs converted to a Double
         
             let discountRateDouble: Double? = Double(discountRateField.text!)
+            let preDiscountPrice = NSString(string: finalDisplayedLabel.text!).doubleValue
             
             if let discountRate = discountRateDouble{
                 
                 let newDisRate: Double = 1 - (discountRate / 100)
-                print("Success! Your discount rate multiple is \(newDisRate)")
-                let preDiscountPrice = NSString(string: finalDisplayedLabel.text!).doubleValue
-                finalDisplayedLabel.text = "\(newDisRate * preDiscountPrice)"
+                print("Success! Your discount rate multiple is \(newDisRate)") // Lets you know the correct discount rate value
                 
-            } // End of if
+                print("Success! Your new final value should be \(newDisRate * preDiscountPrice)") // Tests to see what the actual price is compared to the label value 
+                
+                finalDisplayedLabel.text = "\(round((newDisRate * preDiscountPrice) * 100) / 100)" // round final value to 2 decimal places
+                
+            if discountRateField.text == "" || discountRateField.text == nil{
+                
+                finalDisplayedLabel.text = "\(preDiscountPrice)"
+                
+            } // If user decides to manually clear discount rate, the final value will update
+            
+        } // End of original if
         
     } // End of setDiscountRate function
-
+    
+    @IBAction func clearAllValues(sender: UIButton) {
+    
+        finalDisplayedLabel.text = "0.00" // Reset final display to zero
+        initialValueField.text = "" // Clear all the values
+        salesTaxRateField.text = "" // Clear all the values
+        discountRateField.text = "" // Clear all the values
+       
+        print("The values have been cleared!")
+        
+    } // End of clearAllValues function
+    
 } // End of ViewController class
+
+
+
 
 
 
