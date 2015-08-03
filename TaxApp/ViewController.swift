@@ -183,7 +183,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let newDisRateTwo: Double = 1 - (discountRate / 100)
                 print("Success! Your discount rate multiple is \(newDisRateTwo)")
                 
-                finalDisplayedLabel.text = "\(round(initialValue * newDisRateTwo) * 100 / 100)"
+                print("Your final value should be \(initialValue * newDisRateTwo)")
+                finalDisplayedLabel.text = "\((initialValue * newDisRateTwo) * 100 / 100)"
                 
             }
         } // End of if statement that says if sales tax field is empty, then just multiply initial value by discount
@@ -193,14 +194,37 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func setDiscountRate(sender: UITextField) {
         
+        // Initial value times the sales tax rate if user deletes the discount rate 
+        
+        let salesTaxDouble: Double? = Double(salesTaxRateField.text!)
+       
+        let initialValue = NSString(string: initialValueField.text!).doubleValue
+        let discountRateValue = NSString(string: salesTaxRateField.text!).doubleValue
+        let disRateValue = discountRateField.text!
+        
+        if discountRateValue == 0.00 || disRateValue == "" {
+            
+            if let salesTax = salesTaxDouble{
+                
+                let newSalesTax = (salesTax / 100) + 1 // Calculation to get the multiple
+                print("Success! Your sales tax multiple is \(newSalesTax)") // Shows the multiple being used
+                
+                let finalValue = initialValue * newSalesTax // What the final value calculation will be
+                
+                print("Success! Your new final value should be \(finalValue)") // Tests to see what actual price is compared to the label value
+                
+                finalDisplayedLabel.text = "\(round((finalValue) * 100) / 100)" // round final value to 2 decimal places
+                
+            } // End of nested if
+
+        }
+        
         // Calculate the final value when the user also inputs a Discount Rate
         
         // Initial discount rate value user inputs converted to a Double
         
         let discountRateDouble: Double? = Double(discountRateField.text!)
         let preDiscountPrice = NSString(string: finalDisplayedLabel.text!).doubleValue
-        
-        
         
         if let discountRate = discountRateDouble{
             
@@ -218,6 +242,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             } // If user decides to manually clear discount rate, the final value will update
             
         } // End of original if
+        
+        // If you manually delete the discount rate, and have the other two values, then do this: 
+        
+        
         
     } // End of setDiscountRate function
     
