@@ -194,7 +194,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func setDiscountRate(sender: UITextField) {
         
-        // Initial value times the sales tax rate if user deletes the discount rate 
+        // Initial value times the sales tax rate if user deletes the discount rate
         
         let salesTaxDouble: Double? = Double(salesTaxRateField.text!)
        
@@ -217,7 +217,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
             } // End of nested if
 
-        }
+        } // End of original if
         
         // Calculate the final value when the user also inputs a Discount Rate
         
@@ -243,9 +243,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
         } // End of original if
         
-        // If you manually delete the discount rate, and have the other two values, then do this: 
         
-        
+       // If you delete both the sales tax rate and the discount rate, update the value.
+        if salesTaxDouble == 0.00 && discountRateDouble == 0.00 {
+            
+            finalDisplayedLabel.text = initialValueField.text
+        }
         
     } // End of setDiscountRate function
     
