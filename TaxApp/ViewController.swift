@@ -31,12 +31,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         salesTaxRateField.delegate = self
         discountRateField.delegate = self
         
+        refreshTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
         //Looks for single or multiple taps. - part of hiding keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
         
-        // Pull to Refresh
+        // Pull to Refresh Action 1/2
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
@@ -44,9 +45,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    // Pull to Refresh action
+    // Pull to Refresh Action 2/2
     
     func refresh(refreshControl: UIRefreshControl) {
+       
         // Do your job, when done:
        
         finalDisplayedLabel.text = "0.00" // Reset final display to zero
