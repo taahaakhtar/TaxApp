@@ -151,32 +151,6 @@
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lnQ-6Q-CZD" userLabel="Pull to Refresh Table View">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="104" id="MPB-Xg-QZ7">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="168"/>
-                                    </constraint>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="j5E-Gz-Hib">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j5E-Gz-Hib" id="Ixv-Bc-mgz">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
-                                </prototypes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="MPB-Xg-QZ7"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="MPB-Xg-QZ7"/>
-                                    </mask>
-                                </variation>
                             </tableView>
                         </subviews>
                         <animations/>
@@ -184,26 +158,29 @@
                         <constraints>
                             <constraint firstItem="gFN-nj-vDm" firstAttribute="top" secondItem="pWw-7D-RVu" secondAttribute="top" id="0tC-u5-mCD"/>
                             <constraint firstItem="gFN-nj-vDm" firstAttribute="bottom" secondItem="pWw-7D-RVu" secondAttribute="bottom" id="1Hj-f6-mas"/>
-                            <constraint firstItem="lnQ-6Q-CZD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="3OQ-Ho-efo"/>
                             <constraint firstItem="EA8-xG-mqp" firstAttribute="top" secondItem="b7q-oT-Eux" secondAttribute="bottom" constant="59" id="42m-KA-2rJ">
                                 <variation key="heightClass=regular-widthClass=compact" constant="58"/>
                             </constraint>
+                            <constraint firstItem="lnQ-6Q-CZD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4pp-os-iOa"/>
                             <constraint firstItem="gFN-nj-vDm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="5k9-5p-XXS"/>
-                            <constraint firstAttribute="trailing" secondItem="lnQ-6Q-CZD" secondAttribute="trailing" id="5ta-8R-Z0f"/>
-                            <constraint firstItem="lnQ-6Q-CZD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="64W-bm-d4q"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bsc-wh-R2n" secondAttribute="bottom" constant="92" id="84U-b0-jdD"/>
                             <constraint firstItem="EA8-xG-mqp" firstAttribute="leading" secondItem="b7q-oT-Eux" secondAttribute="leading" id="DJq-Oa-ar9"/>
                             <constraint firstItem="b7q-oT-Eux" firstAttribute="top" secondItem="X2e-lf-WVe" secondAttribute="top" id="GBI-cw-zoX"/>
                             <constraint firstItem="pWw-7D-RVu" firstAttribute="trailing" secondItem="X2e-lf-WVe" secondAttribute="trailing" id="HpF-hJ-ILa"/>
                             <constraint firstItem="b7q-oT-Eux" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Lfu-YO-UAI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pWw-7D-RVu" secondAttribute="trailing" constant="5" id="Lop-ab-eNm"/>
+                            <constraint firstItem="lnQ-6Q-CZD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Mro-Ru-VM0"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8RU-Tc-GJ7" secondAttribute="bottom" constant="90" id="NF0-ZA-CNQ">
                                 <variation key="heightClass=regular-widthClass=compact" constant="65.5"/>
+                            </constraint>
+                            <constraint firstItem="lnQ-6Q-CZD" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="S56-nr-Eis">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-526"/>
                             </constraint>
                             <constraint firstItem="bsc-wh-R2n" firstAttribute="leading" secondItem="EA8-xG-mqp" secondAttribute="leading" id="Xfy-Mf-X4a"/>
                             <constraint firstItem="gFN-nj-vDm" firstAttribute="leading" secondItem="b7q-oT-Eux" secondAttribute="leading" id="Zgc-Mh-FzJ"/>
                             <constraint firstItem="X2e-lf-WVe" firstAttribute="leading" secondItem="jOd-zP-OAZ" secondAttribute="leading" id="aCK-yA-B10"/>
                             <constraint firstItem="b7q-oT-Eux" firstAttribute="top" secondItem="gFN-nj-vDm" secondAttribute="bottom" constant="56" id="aUm-wD-0le"/>
+                            <constraint firstAttribute="trailing" secondItem="lnQ-6Q-CZD" secondAttribute="trailing" id="cC8-hD-RTE"/>
                             <constraint firstItem="jOd-zP-OAZ" firstAttribute="bottom" secondItem="EA8-xG-mqp" secondAttribute="bottom" id="dJd-kO-4ZE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8RU-Tc-GJ7" secondAttribute="trailing" constant="26" id="eyu-Ai-2vS"/>
                             <constraint firstItem="pWw-7D-RVu" firstAttribute="leading" secondItem="X2e-lf-WVe" secondAttribute="leading" id="hDM-Ic-Syr"/>
@@ -224,9 +201,10 @@
                                 <exclude reference="lnQ-6Q-CZD"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="3OQ-Ho-efo"/>
-                                <exclude reference="5ta-8R-Z0f"/>
-                                <exclude reference="64W-bm-d4q"/>
+                                <exclude reference="4pp-os-iOa"/>
+                                <exclude reference="Mro-Ru-VM0"/>
+                                <exclude reference="S56-nr-Eis"/>
+                                <exclude reference="cC8-hD-RTE"/>
                                 <exclude reference="0tC-u5-mCD"/>
                                 <exclude reference="1Hj-f6-mas"/>
                                 <exclude reference="5k9-5p-XXS"/>
@@ -263,9 +241,10 @@
                                 <include reference="lnQ-6Q-CZD"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="3OQ-Ho-efo"/>
-                                <include reference="5ta-8R-Z0f"/>
-                                <include reference="64W-bm-d4q"/>
+                                <include reference="4pp-os-iOa"/>
+                                <include reference="Mro-Ru-VM0"/>
+                                <include reference="S56-nr-Eis"/>
+                                <include reference="cC8-hD-RTE"/>
                                 <include reference="0tC-u5-mCD"/>
                                 <include reference="1Hj-f6-mas"/>
                                 <include reference="5k9-5p-XXS"/>

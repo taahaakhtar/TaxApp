@@ -31,7 +31,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         salesTaxRateField.delegate = self
         discountRateField.delegate = self
         
+        // Remove the separator lines from table view pull to refresh 
         refreshTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        // Make background color transparent to see the other images.
+        refreshTableView.backgroundColor = UIColor.clearColor()
         
         //Looks for single or multiple taps. - part of hiding keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
@@ -164,6 +168,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
         } // If user decides to manually clear sales tax rate, the final value will only display the initial value.
         
+        // Initial Value times the discount rate
+        
+        let discountRateDouble: Double? = Double(discountRateField.text!)
+        
+        let initialValue = NSString(string: initialValueField.text!).doubleValue
+        let salesTaxValue = NSString(string: salesTaxRateField.text!).doubleValue
+        let salesTax = salesTaxRateField.text!
+        
+        if salesTaxValue == 0.00 || salesTax == "" {
+            
+            if let discountRate = discountRateDouble{
+                
+                let newDisRateTwo: Double = 1 - (discountRate / 100)
+                print("Success! Your discount rate multiple is \(newDisRateTwo)")
+                
+                finalDisplayedLabel.text = "\(round(initialValue * newDisRateTwo) * 100 / 100)"
+                
+            }
+        } // End of if statement that says if sales tax field is empty, then just multiply initial value by discount
+        
     } // End of setSalesTax function
     
     
@@ -175,6 +199,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let discountRateDouble: Double? = Double(discountRateField.text!)
         let preDiscountPrice = NSString(string: finalDisplayedLabel.text!).doubleValue
+        
+        
         
         if let discountRate = discountRateDouble{
             
