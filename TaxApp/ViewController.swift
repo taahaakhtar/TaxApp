@@ -20,8 +20,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var finalDisplayedLabel: UILabel!
     @IBOutlet weak var clearValues: UIButton!
     
-    var refreshController: UIRefreshControl!
-    
+    @IBOutlet weak var refreshTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +31,32 @@ class ViewController: UIViewController, UITextFieldDelegate {
         salesTaxRateField.delegate = self
         discountRateField.delegate = self
         
-        setUpRefresh()
         
         //Looks for single or multiple taps. - part of hiding keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
         
+        // Pull to Refresh
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+        refreshTableView.addSubview(refreshControl)
+        
+    }
+    
+    // Pull to Refresh action
+    
+    func refresh(refreshControl: UIRefreshControl) {
+        // Do your job, when done:
+       
+        finalDisplayedLabel.text = "0.00" // Reset final display to zero
+        initialValueField.text = "" // Clear all the values
+        salesTaxRateField.text = "" // Clear all the values
+        discountRateField.text = "" // Clear all the values
+        
+        print("The values have been cleared!")
+        
+        refreshControl.endRefreshing()
     }
     
     // Calls this function when the tap is recognized. Hides keyboard!
@@ -185,36 +204,4 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     } // End of clearAllValues function
     
-    func setUpRefresh() {
-        refreshController = UIRefreshControl()
-        refreshController.attributedTitle = NSAttributedString(string: "")
-        refreshController.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
-        //self.addSubView(refreshController)
-    }
-    
-    func refresh() {
-        
-    }
-    
-    //    lazy var refreshControl: UIRefreshControl = {
-    //        let refreshControl = UIRefreshControl()
-    //        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
-    //
-    //        return refreshControl
-    //        }()
-    
 } // End of ViewController class
-
-
-
-
-
-
-
-
-
-
-
-
-
-

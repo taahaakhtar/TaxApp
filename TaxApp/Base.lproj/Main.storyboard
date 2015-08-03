@@ -148,16 +148,39 @@
                                     <action selector="clearAllValues:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BR7-tv-eh9"/>
                                 </connections>
                             </button>
+                            <tableView contentMode="scaleAspectFit" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lnQ-6Q-CZD" userLabel="Pull to Refresh Table View">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="104" id="MPB-Xg-QZ7">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="168"/>
+                                    </constraint>
+                                </constraints>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="MPB-Xg-QZ7"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="MPB-Xg-QZ7"/>
+                                    </mask>
+                                </variation>
+                            </tableView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gFN-nj-vDm" firstAttribute="top" secondItem="pWw-7D-RVu" secondAttribute="top" id="0tC-u5-mCD"/>
                             <constraint firstItem="gFN-nj-vDm" firstAttribute="bottom" secondItem="pWw-7D-RVu" secondAttribute="bottom" id="1Hj-f6-mas"/>
+                            <constraint firstItem="lnQ-6Q-CZD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="3OQ-Ho-efo"/>
                             <constraint firstItem="EA8-xG-mqp" firstAttribute="top" secondItem="b7q-oT-Eux" secondAttribute="bottom" constant="59" id="42m-KA-2rJ">
                                 <variation key="heightClass=regular-widthClass=compact" constant="58"/>
                             </constraint>
                             <constraint firstItem="gFN-nj-vDm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="5k9-5p-XXS"/>
+                            <constraint firstAttribute="trailing" secondItem="lnQ-6Q-CZD" secondAttribute="trailing" id="5ta-8R-Z0f"/>
+                            <constraint firstItem="lnQ-6Q-CZD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="64W-bm-d4q"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bsc-wh-R2n" secondAttribute="bottom" constant="92" id="84U-b0-jdD"/>
                             <constraint firstItem="EA8-xG-mqp" firstAttribute="leading" secondItem="b7q-oT-Eux" secondAttribute="leading" id="DJq-Oa-ar9"/>
                             <constraint firstItem="b7q-oT-Eux" firstAttribute="top" secondItem="X2e-lf-WVe" secondAttribute="top" id="GBI-cw-zoX"/>
@@ -188,8 +211,12 @@
                                 <exclude reference="jOd-zP-OAZ"/>
                                 <exclude reference="8RU-Tc-GJ7"/>
                                 <exclude reference="bsc-wh-R2n"/>
+                                <exclude reference="lnQ-6Q-CZD"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="3OQ-Ho-efo"/>
+                                <exclude reference="5ta-8R-Z0f"/>
+                                <exclude reference="64W-bm-d4q"/>
                                 <exclude reference="0tC-u5-mCD"/>
                                 <exclude reference="1Hj-f6-mas"/>
                                 <exclude reference="5k9-5p-XXS"/>
@@ -223,8 +250,12 @@
                                 <include reference="jOd-zP-OAZ"/>
                                 <include reference="8RU-Tc-GJ7"/>
                                 <include reference="bsc-wh-R2n"/>
+                                <include reference="lnQ-6Q-CZD"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="3OQ-Ho-efo"/>
+                                <include reference="5ta-8R-Z0f"/>
+                                <include reference="64W-bm-d4q"/>
                                 <include reference="0tC-u5-mCD"/>
                                 <include reference="1Hj-f6-mas"/>
                                 <include reference="5k9-5p-XXS"/>
@@ -254,6 +285,7 @@
                         <outlet property="discountRateField" destination="jOd-zP-OAZ" id="VFa-Eu-56b"/>
                         <outlet property="finalDisplayedLabel" destination="8RU-Tc-GJ7" id="vhE-df-JpA"/>
                         <outlet property="initialValueField" destination="pWw-7D-RVu" id="Nj1-ms-JJT"/>
+                        <outlet property="refreshTableView" destination="lnQ-6Q-CZD" id="ocY-bZ-vmx"/>
                         <outlet property="salesTaxRateField" destination="X2e-lf-WVe" id="XOd-Wc-kdl"/>
                     </connections>
                 </viewController>
